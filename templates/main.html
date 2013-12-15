@@ -2,11 +2,12 @@
 
 {% block content %}
 <div class="container">
-<a href='?index={{ index - 1 }}'>prev</a>
-<img src='{{ image }}' />
-<a href='?index={{ index + 1 }}'>next</a>
+<a class='nav left' href='?index={{ index - 1 }}'><span>&lt;</span></a>
+<img class='fit' src='{{ image }}' />
+<a class='nav right' href='?index={{ index + 1 }}'><span>&gt;</span></a>
 </div>
 
 {% endblock %}
 {% block head %}
+{{super()}}
 {% endblock %}
