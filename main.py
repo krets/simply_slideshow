@@ -20,11 +20,17 @@ def nextImage():
 def previousImage():
     return getImage(-1)
 
+@app.route('/image')
+def image(index=None):
+    if index == None:
+        index = request.args.get('index', 0, type=int)
+    image = ALL_FILES[index].replace(PREFIX,'')
+    return url_for('static', filename=image)
+
 def getImage(offset=1):
     index = request.args.get('index', 0, type=int)
     nextIndex = (index+offset)%len(ALL_FILES)
-    image = ALL_FILES[nextIndex].replace(PREFIX,'')
-    return url_for('static', filename=image)
+    return image(nextIndex)
 
 if __name__ == '__main__':
     app.run('0.0.0.0', debug=True)
